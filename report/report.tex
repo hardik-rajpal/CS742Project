@@ -18,9 +18,58 @@ In addition to steganography, additional techniques are employed to futher compl
 \begin{enumerate}
 \item Ghostscript 
 \end{enumerate}
+\section{Reading Notes from \href{https://www.researchgate.net/publication/267767675_Syntactic_Bank-based_Linguistic_Steganography_Approach}{This Paper}}
+\begin{enumerate}
+\item Abstract
+\begin{itemize}
+    \item Syntactic bank-based linguistic steganography approach for information security.
+    \item Uses the Stanford parser to obtain a syntax tree from sentences.
+    \item Use Shannon-Fano coding to compress input messages (user identification in the project's case) in as few bits as possible.
+    \item Syntax transformation task: searches the syntax set of the given sentence within the syntax bank and transforms it into a syntax that can represent the secret in the sentence.
+    \item The resulting text is still ``innocent-looking,'' and the transformation doesn't affect the semantics.
+\item Additionally use a HMAC to improve robustness of the stego text.
+\end{itemize}
+\item Introduction
+\begin{itemize}
+\item There are three dimensions in a stego system:
+\begin{enumerate}
+    \item Payload Capacity: the ratio of hidden information to cover information.
+    \item Robustness: the ability of the system to resist against changes in the cover object.
+    \item Imperceptibility: the potential of the generated stego object to remain indistinguishable from other objects in the same category.
+\end{enumerate}
+\item The three dimensions often contradict each other.
+\item Concealing any data in a text file is the most difficult kind of steganography due to the lack of redundant information in a text file.
+\item Text steganography is broadly classified into two categories:
+\begin{enumerate}
+\item Linguistic Approach: the art of using written natural language to conceal secret messages.
+\begin{itemize}
+    \item Further divided into semantic and syntactic methods, with the syntactic method being divided into line-shift, word-shift, open-space and feature encoding.
+\end{itemize}
+\item Format-based Approach: uses physical formatting of text as a place in which to hide information.
+\end{enumerate}
+\end{itemize}
+\item Linguistic Steganography
+\begin{itemize}
+\item The changes made to embed information in the cover text \textbf{do not result in an ungrammatical or unnatural text.}
+\item Most methods of this type use either lexical (semantic) (ex. synonym substitution) or syntactic transformations (of the grammatical style of the original sentences) or a combination of the two.
+\end{itemize}
+\item Syntax of Language
+\begin{itemize}
+\item Set of rules that the language uses to combine words to create sentences.
+\item Parts of speech combine into phrases.
+\item Clauses can be broken down into phrases.
+\item Sentences can have one or more independent or dependent clauses.
+\end{itemize}
+\item Proposed Approach
+\begin{itemize}
+\item The cover text (document in our case) is parsed by the parser to obtain a syntax tree, while the secret message (user identifer in our case) is compressed by the Shannon-Fano algorithm.
+\item How do we get the syntax set of a sentence?
+\end{itemize}
+\end{enumerate}
 \section{References}
 \begin{enumerate}
-\item \href{https://tex.stackexchange.com/questions/507288/minted-make-text-non-selectable-on-output-pdf}{Combat text selection}
-\item \href{https://stackoverflow.com/questions/28797418/replace-all-font-glyphs-in-a-pdf-by-converting-them-to-outline-shapes}{Combat text selection still}
+    \item \href{https://stackoverflow.com/questions/42322902/how-to-get-parse-tree-using-python-nltk}{parse tree}
+    \item \href{https://tex.stackexchange.com/questions/507288/minted-make-text-non-selectable-on-output-pdf}{Combat text selection}
+    \item \href{https://stackoverflow.com/questions/28797418/replace-all-font-glyphs-in-a-pdf-by-converting-them-to-outline-shapes}{Combat text selection still}
 \end{enumerate}
 \end{document}

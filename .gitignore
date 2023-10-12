@@ -1,3 +1,4 @@
 report/*
 !report/*.pdf
 !report/*.tex
+!report/references/*.pdf
