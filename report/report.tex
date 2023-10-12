@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[a4paper,hmargin=0.8in,bottom=1.3in]{geometry}
+\usepackage{lastpage,enumerate,fancyhdr,mathrsfs,xcolor,graphicx,listings,hyperref,enumitem}
+\author{Hardik Rajpal}
+\title{Syntactic Steganography for Document Leak Identification}
+\begin{document}
+\maketitle
+\section{Introduction}
+This project seeks to implement the principles of syntactic steganography for identification of the sources of leaks of confidential documents from a protected server. The security model is based on the following assumptions:
+\begin{enumerate}
+\item Each protected document is stored on the server in .DOCX format.
+\item Each user has an identification number, known to the server.
+\item The only way to access the documents is to request them from the server after authentication.
+\end{enumerate}
+In addition to steganography, additional techniques are employed to futher complicate the task of leaking the documents, such as:
+\begin{enumerate}
+\item Ghostscript 
+\end{enumerate}
+\section{References}
+\begin{enumerate}
+\item \href{https://tex.stackexchange.com/questions/507288/minted-make-text-non-selectable-on-output-pdf}{Combat text selection}
+\item \href{https://stackoverflow.com/questions/28797418/replace-all-font-glyphs-in-a-pdf-by-converting-them-to-outline-shapes}{Combat text selection still}
+\end{enumerate}
+\end{document}
