@@ -1,4 +1,5 @@
 report/*
+server/models/*
 !report/*.pdf
 !report/*.tex
 !report/references/*.pdf
