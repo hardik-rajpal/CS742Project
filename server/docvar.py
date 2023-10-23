@@ -2,6 +2,7 @@ from paraphraser import Rephraser
 import pickle as pkl
 import uuid
 import random
+from docx2pdf import convert
 from docx import Document
 SERVER_KEY = 'howard_roark'
 class Doc:
@@ -62,7 +63,14 @@ class DocVariationsGenerator:
             hashString += hash(sentence)
         return hash(hashString+SERVER_KEY) # hmac because....
     def writePDF(self,sentences,name):
+        # sents to docx.
+        # try applying style.
+        # to pdf.
+        # use ghostscript
         pass
+        # convert("input.docx")
+        # convert("input.docx", "output.pdf")
+        # convert("my_docx_folder/")
 if __name__ == '__main__':
     random.seed(0) # reproducible UUIDs until db is setup.
     dvg = DocVariationsGenerator()
