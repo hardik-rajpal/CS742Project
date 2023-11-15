@@ -1,3 +1,17 @@
+"""
+[
+  [
+    "Online education can be challenging for some students, while it offers convenience and flexibility for others.",
+    "Some students find online education to be a burden, while others appreciate its benefits such as flexibility and convenience.",
+    "For some students, online education is a curse, while for others, it is a blessing that provides flexibility and convenience."
+  ],
+  [
+    "The part that I enjoy the most about online education is the ease with which I can switch classrooms, without having to physically move from one location to another.",
+    "One of the things that I appreciate the most about online education is the ability to easily switch between classrooms, without having to physically move from one location to another.",
+    "The part of online education that I find the most enjoyable is the ease with which I can switch classrooms, without having to physically move from one location to another."
+  ]
+]
+"""
 from paraphraser import Rephraser
 import pickle as pkl
 import uuid
