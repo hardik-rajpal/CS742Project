@@ -10,7 +10,7 @@ SERVER_KEY = 'howard_roark'
 DEFAULT_DOC_VARS = [
   ["Test Document"],
   [
-    "Online Education; it's a curse for some students and a blessing for others.",
+    "Online Education; it\u2019s a curse for some students and a blessing for others.",
     "Online education can be challenging for some students, while it offers convenience and flexibility for others.",
     "Some students find online education to be a burden, while others appreciate its benefits such as flexibility and convenience.",
     "For some students, online education is a curse, while for others, it is a blessing that provides flexibility and convenience."
@@ -41,25 +41,34 @@ DEFAULT_DOC_VARS = [
   ],
   [
     "This fluidity of the schedule permits one to partition their time to maximise their efficiency and clarity in a concept; a point sadly overlooked in the conventional and offline teaching methods.",
-    "The fluidity of the online education schedule allows students to partition their time effectively, maximizing their efficiency and clarity in understanding complex concepts.",
-    "The flexibility of the online education schedule enables students to manage their time more efficiently and clearly understand complex concepts.",
-    "The fluidity of the online education schedule permits students to allocate their time effectively, maximizing their efficiency and clarity in understanding complex concepts."
+    "The flexibility of the schedule allows for efficient and clear time management, which is often overlooked in traditional classroom settings.",
+    "The ability to manage time effectively and clearly is crucial for success in any learning environment, including online courses.",
+    "The ability to allocate time efficiently and clearly is a valuable skill that can be applied across various areas of life, not just in the context of education."
   ],
   [
     "These ideas being the bright side of the issue; there are screen-sharing mishaps, an absurd absence of a schedule in the lives of the undisciplined students, and loosely proctored quizzes to restore the balance.",
-    "The bright side of online education is that it allows for screen-sharing mishaps, an absence of a schedule in the lives of undisciplined students, and loosely proctored quizzes to restore the balance.",
-    "The positive aspects of online education include screen-sharing mishaps, an absence of a schedule in the lives of undisciplined students, and loosely proctored quizzes to restore the balance.",
-    "The benefits of online education include screen-sharing mishaps, an absence of a schedule in the lives of undisciplined students, and loosely proctored quizzes to restore the balance."
+    "The positive aspects of the situation include the ability to share ideas through screen-sharing technology, the lack of a structured schedule for some students, and the occasional use of unscheduled quizzes to maintain academic integrity.",
+    "The benefits of the situation include the ability to collaborate with others through screen-sharing technology, the absence of a rigid schedule for some students, and the occasional use of unscheduled quizzes to ensure academic honesty.",
+    "The advantages of the situation include the ability to work together with others through screen-sharing technology, the lack of a structured schedule for some students, and the occasional use of unscheduled quizzes to maintain academic integrity."
   ],
   [
-    "There's no stringent bus driver who's gonna leave you behind if you're not at the stop on time; no way for the teacher to genuinely threaten you for your disrespectful actions."
+    "There's no stringent bus driver who's gonna leave you behind if you're not at the stop on time; no way for the teacher to genuinely threaten you for your disrespectful actions.",
+    "There is no strict adherence to a schedule or timetable, allowing students to arrive and depart at their own pace without fear of punishment or consequences.",
+    "The lack of a rigid bus schedule or a stern teacher who enforces rules allows students to have more freedom in their daily routines and make their own decisions about when they arrive and leave.",
+    "There is no pressure to adhere to a strict timetable or schedule, allowing students to come and go as they please without fear of punishment or consequences."
   ],
   [
-    "Teachers have gone from the magicians in their five-star, one-person shows to street performers, begging for the least possible glance of interest at a medieval caf\u00e9."
+    "Teachers have gone from the magicians in their five-star, one-person shows to street performers, begging for the least possible glance of interest at a medieval caf\u00e9.",
+    "Teachers are no longer revered as masters of knowledge and authority, but rather seen as struggling performers who must work hard to gain even the slightest attention from their students.",
+    "The once-glamorous role of the teacher has been reduced to that of a street performer, begging for any possible glance of interest from their students.",
+    "Teachers are no longer seen as the all-knowing and powerful masters of knowledge and authority, but rather as struggling performers who must work hard to gain even the slightest attention from their students."
   ],
   [
-    "There's no way they can suspend you, the only useful arrow in their otherwise hollow quavers, for being late to the zoom meeting; why of course, you had connectivity issues, who doesn't when there's a biology class at 8:30 in the morning? Another problem is the access to anonymity on specific platforms (Zoom, at least, when you don't know how to secure a meeting)."
-  ]
+    "There's no way they can suspend you, the only useful arrow in their otherwise hollow quavers, for being late to the zoom meeting; why of course, you had connectivity issues, who doesn't when there's a biology class at 8:30 in the morning? Another problem is the access to anonymity on specific platforms (Zoom, at least, when you don't know how to secure a meeting).",
+    "There is no way for teachers to punish or discipline students for being late to a zoom meeting, as there are no strict attendance policies or consequences for missing class.",
+    "The lack of strict attendance policies and consequences for missing class allows students to have more freedom in their daily routines and make their own decisions about when they attend classes.",
+    "There is no way for teachers to punish or discipline students for being late to a zoom meeting, as there are no strict attendance policies or consequences for missing class."
+  ]  
 ]
 DELIMS = ('.','?','!')
 class Doc:
