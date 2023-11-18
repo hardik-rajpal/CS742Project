@@ -6,6 +6,8 @@ import random
 from docx2pdf import convert
 from docx import Document
 import math
+import spacy
+SIMILARITY_THRESHOLD=0.8
 SERVER_KEY = 'howard_roark'
 DEFAULT_DOC_VARS = [
   ["Test Document"],
@@ -92,6 +94,7 @@ class DocVariationsGenerator:
     def __init__(self):
         self.picklepath = 'docvars.pkl'
         self.numphrases = 3
+        self.nlp = None
         self.rephraser = None #initialized only if rephrasing function is called
     # def loadVariations(self):
     #     with open(self.picklepath,'rb') as f:
@@ -153,6 +156,21 @@ class DocVariationsGenerator:
                         else:
                             options[i]+=delim
         #TODO discard sentences that are too far.
+        if(self.nlp is None):
+            self.nlp = spacy.load('en_core_web_lg')
+        simils = []
+        for j in range(len(variations)):
+            options = variations[j]
+            similarities = [1]
+            filteredOptions = [options[0]]
+            if(len(options)>1):
+                truth = self.nlp(options[0])
+                for i in range(1,len(options)):
+                    option = self.nlp(options[i])
+                    if(truth.similarity(option)>SIMILARITY_THRESHOLD):
+                        filteredOptions.append(options[i])
+            variations[j] = filteredOptions
+        print(simils)
         return variations
     def getFullDocVariations(self,doc:Doc):
         sentences,paraSentCount = self.extractSentences(doc)
