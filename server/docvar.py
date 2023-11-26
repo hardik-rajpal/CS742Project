@@ -15,63 +15,75 @@ DEFAULT_DOC_VARS = [
   ["Test Document"],
   [
     "Online Education; it\u2019s a curse for some students and a blessing for others.",
-    "Online education can be challenging for some students, while it offers convenience and flexibility for others.",
-    "Some students find online education to be a burden, while others appreciate its benefits such as flexibility and convenience.",
-    "For some students, online education is a curse, while for others, it is a blessing that provides flexibility and convenience."
+    "Online education can be challenging for some students, while it offers benefits for others.",
+    "The online learning experience can be overwhelming for some students, but it is advantageous for others.",
+    "Some students find online education to be a burden, while others find it beneficial."
   ],
   [
     "The part that pleases me the most is the ease with which we can switch classrooms.",
-    "The part that I enjoy the most about online education is the ease with which I can switch classrooms, without having to physically move from one location to another.",
-    "One of the things that I appreciate the most about online education is the ability to easily switch between classrooms, without having to physically move from one location to another.",
-    "The part of online education that I find the most enjoyable is the ease with which I can switch classrooms, without having to physically move from one location to another."
+    "The aspect of my job that I enjoy the most is the convenience of being able to switch between classrooms easily.",
+    "The thing that brings me the most satisfaction in my work is the ability to move between classrooms without any hassle.",
+    "The part of my job that I find the most enjoyable is the flexibility to switch between classrooms with ease."
   ],
   [
     "The only way I am gonna be happy if the campus reopens is if the lecture halls are a Chrome tab away.",
-    "The only way I will be happy if the campus reopens is if the lecture halls are accessible through a Chrome tab, without having to physically move from one location to another.",
-    "If the campus reopens, I will be happiest if the lecture halls are accessible through a Chrome tab, without having to physically move from one location to another.",
-    "The only way I can be happy if the campus reopens is if the lecture halls are accessible through a Chrome tab, without having to physically move from one location to another."
+    "The only way I can be content if the campus reopens is if the lecture halls are accessible through a Chrome tab.",
+    "If the lecture halls are available through a Chrome tab, then I will be satisfied with the campus reopening.",
+    "The only way I can feel happy if the campus reopens is if the lecture halls are accessible through a Chrome tab."
   ],
   [
     "The idea of a \"flipped-classroom\" model, where the students watch the pre-recorded lectures before having a live class, really relaxes the time constraints faced in traditional schooling.",
-    "The idea of a \"flipped-classroom\" model, where the students watch the pre-recorded lectures before having a live class, really helps to reduce the pressure on students and teachers alike.",
-    "The concept of a \"flipped-classroom\" model, where the students watch the pre-recorded lectures before having a live class, is an effective way to manage time constraints in traditional schooling.",
-    "The idea of a \"flipped-classroom\" model, where the students watch the pre-recorded lectures before having a live class, really helps to alleviate the pressure on both students and teachers."
+    "The concept of a flipped classroom, where students watch pre-recorded lectures before having live classes, is a great way to reduce time constraints in traditional schooling.",
+    "The idea of a flipped classroom, where students watch pre-recorded lectures before having live classes, can help alleviate the pressure of traditional schooling.",
+    "The concept of a flipped classroom, where students watch pre-recorded lectures before having live classes, is an effective way to reduce time constraints in traditional schooling."
   ],
   [
     "As advocated by Sal Khan from Khan Academy, the whole process can become perfection-centred rather than the usual complete-the-syllabus-on-time-centred.",
-    "As advocated by Sal Khan from Khan Academy, the whole process of online education can be transformed into a perfection-centered approach, rather than the traditional focus on completing the syllabus within a specific time frame.",
-    "The idea of perfection-centered online education, as advocated by Sal Khan from Khan Academy, is an effective way to manage time constraints and promote student engagement in the learning process.",
-    "The concept of perfection-centered online education, as advocated by Sal Khan from Khan Academy, is a promising approach that can help students to develop their skills and abilities more effectively."
+    "As suggested by Sal Khan from Khan Academy, the entire process can be transformed into a perfection-centered approach instead of the traditional \"complete the syllabus on time\" mindset.",
+    "Sal Khan's approach to education emphasizes a perfection-centered approach that focuses on developing skills and fostering creativity rather than simply completing tasks within a set timeframe.",
+    "Sal Khan's philosophy of education places emphasis on a perfection-centered approach, which prioritizes cultivating skills and fostering creativity over adhering to strict deadlines or completing tasks within a specific time frame."
   ],
   [
     "This fluidity of the schedule permits one to partition their time to maximise their efficiency and clarity in a concept; a point sadly overlooked in the conventional and offline teaching methods.",
-    "The flexibility of the schedule allows for efficient and clear time management, which is often overlooked in traditional classroom settings.",
-    "The ability to manage time effectively and clearly is crucial for success in any learning environment, including online courses.",
-    "The ability to allocate time efficiently and clearly is a valuable skill that can be applied across various areas of life, not just in the context of education."
+    "The flexibility of the schedule allows individuals to allocate their time effectively, maximizing their efficiency and clarity in understanding concepts, which is often neglected in traditional and offline teaching methods.",
+    "The fluidity of the schedule enables individuals to manage their time efficiently and gain a deeper understanding of concepts, which is often overlooked in conventional and offline teaching methods.",
+    "The flexibility of the schedule allows individuals to allocate their time effectively, maximizing their efficiency and clarity in understanding concepts, which is often overlooked in traditional and offline teaching methods."
   ],
   [
     "These ideas being the bright side of the issue; there are screen-sharing mishaps, an absurd absence of a schedule in the lives of the undisciplined students, and loosely proctored quizzes to restore the balance.",
-    "The positive aspects of the situation include the ability to share ideas through screen-sharing technology, the lack of a structured schedule for some students, and the occasional use of unscheduled quizzes to maintain academic integrity.",
-    "The benefits of the situation include the ability to collaborate with others through screen-sharing technology, the absence of a rigid schedule for some students, and the occasional use of unscheduled quizzes to ensure academic honesty.",
-    "The advantages of the situation include the ability to work together with others through screen-sharing technology, the lack of a structured schedule for some students, and the occasional use of unscheduled quizzes to maintain academic integrity."
+    "The positive aspects of the situation include the ability to work around screen-sharing issues, the lack of a structured schedule for undisciplined students, and the opportunity to take advantage of lenient proctoring practices to restore balance.",
+    "The benefits of the situation include the ability to adapt to screen-sharing challenges, the absence of a rigid schedule for undisciplined students, and the chance to take advantage of flexible proctoring policies to restore equilibrium.",
+    "The advantages of the situation include the ability to work around screen-sharing difficulties, the lack of a structured schedule for undisciplined students, and the opportunity to take advantage of lenient proctoring practices to restore balance."
   ],
   [
     "There's no stringent bus driver who's gonna leave you behind if you're not at the stop on time; no way for the teacher to genuinely threaten you for your disrespectful actions.",
-    "There is no strict adherence to a schedule or timetable, allowing students to arrive and depart at their own pace without fear of punishment or consequences.",
-    "The lack of a rigid bus schedule or a stern teacher who enforces rules allows students to have more freedom in their daily routines and make their own decisions about when they arrive and leave.",
-    "There is no pressure to adhere to a strict timetable or schedule, allowing students to come and go as they please without fear of punishment or consequences."
+    "There is no strict bus driver or teacher who will penalize you for being late, and there are no consequences for disrespecting authority figures.",
+    "There is no strict bus driver or teacher who will punish you for being late, and there are no repercussions for disregarding the rules of authority figures.",
+    "There is no strict bus driver or teacher who will penalize you for being late, and there are no consequences for disobeying the rules of authority figures."
   ],
   [
     "Teachers have gone from the magicians in their five-star, one-person shows to street performers, begging for the least possible glance of interest at a medieval caf\u00e9.",
-    "Teachers are no longer revered as masters of knowledge and authority, but rather seen as struggling performers who must work hard to gain even the slightest attention from their students.",
-    "The once-glamorous role of the teacher has been reduced to that of a street performer, begging for any possible glance of interest from their students.",
-    "Teachers are no longer seen as the all-knowing and powerful masters of knowledge and authority, but rather as struggling performers who must work hard to gain even the slightest attention from their students."
+    "Teachers have gone from being masters of illusion and spectacle in their elaborate performances to struggling street performers, hoping for even a fleeting glance of interest from passersby at a modest medieval caf\u00e9.",
+    "The once-glamorous world of magic and illusion has been replaced by the humblest of professions, as teachers now struggle to make ends meet and eke out a living in the most unassuming of settings.",
+    "From the grand stages of their former careers to the cramped quarters of a medieval caf\u00e9, teachers have seen their fortunes plummet, leaving them with little more than the hope of a fleeting glance from a passerby as they struggle to make ends meet."
   ],
   [
     "There's no way they can suspend you, the only useful arrow in their otherwise hollow quavers, for being late to the zoom meeting; why of course, you had connectivity issues, who doesn't when there's a biology class at 8:30 in the morning?",
-    "There is no way for teachers to punish or discipline students for being late to a zoom meeting, as there are no strict attendance policies or consequences for missing class.",
-    "The lack of strict attendance policies and consequences for missing class allows students to have more freedom in their daily routines and make their own decisions about when they attend classes.",
-    "There is no way for teachers to punish or discipline students for being late to a zoom meeting, as there are no strict attendance policies or consequences for missing class."
+    "There is no way that teachers can be suspended for being late to a virtual meeting, as they have no other useful arrows in their quiver besides their ability to connect with students online.",
+    "Despite the challenges of working remotely and dealing with connectivity issues, teachers are able to maintain their presence and continue to provide support to their students through virtual meetings.",
+    "While it may be frustrating for teachers to experience technical difficulties during a meeting, they remain committed to maintaining their connection with students and providing them with the support they need to succeed."
+  ],
+  [
+    "Another problem is the access to anonymity on specific platforms.",
+    "Another issue that arises when using certain online platforms is the lack of anonymity for users, making it difficult for individuals to express themselves freely and without fear of repercussion.",
+    "The use of certain online platforms can be problematic due to the lack of anonymity, as users may feel constrained in expressing their opinions or ideas without fear of backlash or retaliation.",
+    "When using specific online platforms, users may experience difficulty in expressing themselves freely and authentically, due to the lack of anonymity provided by these platforms."
+  ],
+  [
+    "Grant the class-clown a Guy-Fawkes curtain and suddenly, his jokes aren't gonna be quite PG13.",
+    "Granting the class clown a platform for their jokes may result in them becoming more vulgar or inappropriate, as they are given greater freedom to express themselves without fear of censorship or repercussion.",
+    "When the class clown is granted a platform for their jokes, they may become more irreverent and inappropriate, as they are able to express themselves without fear of censorship or repercussion.",
+    "Allowing the class clown to have a platform for their jokes can result in them becoming more vulgar or inappropriate, as they are given greater freedom to express themselves without fear of censorship or repercussion."
   ]  
 ]
 DELIMS = ('.','?','!')
