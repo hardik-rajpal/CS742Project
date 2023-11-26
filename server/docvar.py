@@ -68,7 +68,7 @@ DEFAULT_DOC_VARS = [
     "Teachers are no longer seen as the all-knowing and powerful masters of knowledge and authority, but rather as struggling performers who must work hard to gain even the slightest attention from their students."
   ],
   [
-    "There's no way they can suspend you, the only useful arrow in their otherwise hollow quavers, for being late to the zoom meeting; why of course, you had connectivity issues, who doesn't when there's a biology class at 8:30 in the morning? Another problem is the access to anonymity on specific platforms (Zoom, at least, when you don't know how to secure a meeting).",
+    "There's no way they can suspend you, the only useful arrow in their otherwise hollow quavers, for being late to the zoom meeting; why of course, you had connectivity issues, who doesn't when there's a biology class at 8:30 in the morning?",
     "There is no way for teachers to punish or discipline students for being late to a zoom meeting, as there are no strict attendance policies or consequences for missing class.",
     "The lack of strict attendance policies and consequences for missing class allows students to have more freedom in their daily routines and make their own decisions about when they attend classes.",
     "There is no way for teachers to punish or discipline students for being late to a zoom meeting, as there are no strict attendance policies or consequences for missing class."
@@ -103,7 +103,6 @@ class DocVariationsGenerator:
             self.messageCharSet.append(str(i))
         for i in range(0,26):
             self.messageCharSet.append(chr(ord('a')+i))
-        print(self.messageCharSet)
     def extractSentences(self,doc:Doc):
         msDoc = Document(doc.path)
         paras = msDoc.paragraphs
@@ -235,10 +234,10 @@ class DocVariationsGenerator:
         offsets = self.getOffsets(cleanVariations)
         indices = [0]*len(offsets)
         for i in range(0,len(sentences)):
-            # try:/
-                print(cleanVariations[i],sentences[i])
-                indices[i] = cleanVariations[i].index(sentences[i])
+            # try:
+            indices[i] = cleanVariations[i].index(sentences[i])
             # except:
+            # TODO: gracefully handle possible errors.  
             #     # print(cleanVariations[i])
             #     # print(sentences[i])
             #     # print(cleanVariations[0],cleanVariations[-1])
