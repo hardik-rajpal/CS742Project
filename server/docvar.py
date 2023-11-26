@@ -1,5 +1,6 @@
 from paraphraser import Rephraser
-import pickle as pkl
+import zlib
+import re
 import inspect
 import uuid
 import random
@@ -7,6 +8,7 @@ from docx2pdf import convert
 from docx import Document
 import math
 import spacy
+import argparse
 SIMILARITY_THRESHOLD=0.8
 SERVER_KEY = 'howard_roark'
 DEFAULT_DOC_VARS = [
@@ -96,11 +98,12 @@ class DocVariationsGenerator:
         self.numphrases = 3
         self.nlp = None
         self.rephraser = None #initialized only if rephrasing function is called
-    # def loadVariations(self):
-    #     with open(self.picklepath,'rb') as f:
-    #         self.variations = pkl.load(f)
-    #     print('loaded variations:\n',self.variations)
-    #     return self.variations
+        self.messageCharSet = []
+        for i in range(0,10):
+            self.messageCharSet.append(str(i))
+        for i in range(0,26):
+            self.messageCharSet.append(chr(ord('a')+i))
+        print(self.messageCharSet)
     def extractSentences(self,doc:Doc):
         msDoc = Document(doc.path)
         paras = msDoc.paragraphs
@@ -109,12 +112,8 @@ class DocVariationsGenerator:
         for para in paras:
             paraSentCount.append(ParaData(0,para.style))
             para.text = para.text.strip()
-            
-            sents = para.text.split('. ')
-            if(len(sents[-1].strip())==0):
-                sents.pop()
-            for index in range(len(sents)-1):# -1 to ignore blank end.
-                sents[index] = sents[index]+'.'
+            # print(para.text)
+            sents = self.delimSplit(para.text)            
             paraSentCount[-1].sentCount = len(sents)
             result.extend(sents)
         return result,paraSentCount
@@ -122,8 +121,8 @@ class DocVariationsGenerator:
         msDoc = Document()
         pos = 0
         for paraData in paraSentCount:
-            print('sentcount: ',paraData.sentCount,'style: ',paraData.style.name)
-            print(getDataMembers(paraData.style.font))
+            # print('sentcount: ',paraData.sentCount,'style: ',paraData.style.name)
+            # print(getDataMembers(paraData.style.font))
             count = paraData.sentCount
             sents = sentences[pos:pos+count]
             paraText = ''
@@ -151,9 +150,7 @@ class DocVariationsGenerator:
                 for i in range(1,len(options)):
                     delim = options[0][-1]
                     if(options[i][-1]!=delim):
-                        if(options[i][-1] in DELIMS):
-                            options[i][-1] = delim
-                        else:
+                        if(not (options[i][-1] in DELIMS)):
                             options[i]+=delim
         #TODO discard sentences that are too far.
         if(self.nlp is None):
@@ -170,7 +167,7 @@ class DocVariationsGenerator:
                     if(truth.similarity(option)>SIMILARITY_THRESHOLD):
                         filteredOptions.append(options[i])
             variations[j] = filteredOptions
-        print(simils)
+        # print(simils)
         return variations
     def getFullDocVariations(self,doc:Doc):
         sentences,paraSentCount = self.extractSentences(doc)
@@ -223,36 +220,98 @@ class DocVariationsGenerator:
             outputSentences.append(sentenceOptions[index])
         outputDoc = Doc(outputFname)
         self.injectSentences(outputDoc,outputSentences,paraSentCount)
-    def decodeFromDoc(self,doc,modContent:str):
-        cleanVariations = self.getFullDocVariations(doc)
-        sentences = list(map(lambda sent:sent+'.',modContent.split('. ')))
-        sentences.pop()
+    def delimSplit(self,bulktext:str):
+        regex = '|'.join('(?<={})'.format(re.escape(delim)) for delim in DELIMS)
+        # print(regex)
+        output = re.split(regex,bulktext)
+        ans = []
+        for i in range(len(output)):
+            if(len(output[i])>0):
+                ans.append(output[i].strip())
+        return ans
+    def decodeFromDoc(self,doc,outputDoc):
+        cleanVariations,_ = self.getFullDocVariations(doc)
+        sentences,_ = self.extractSentences(outputDoc)
         offsets = self.getOffsets(cleanVariations)
         indices = [0]*len(offsets)
         for i in range(0,len(sentences)):
-            try:
+            # try:/
+                print(cleanVariations[i],sentences[i])
                 indices[i] = cleanVariations[i].index(sentences[i])
-            except:
-                # print(cleanVariations[i])
-                # print(sentences[i])
-                print(cleanVariations[0],cleanVariations[-1])
-                print(sentences[0],sentences[-1])
-                print(len(cleanVariations),len(sentences))
-                return ''
+            # except:
+            #     # print(cleanVariations[i])
+            #     # print(sentences[i])
+            #     # print(cleanVariations[0],cleanVariations[-1])
+            #     # print(sentences[0],sentences[-1])
+            #     # print(len(cleanVariations),len(sentences))
+            #     return ''
         message = self.multibaseDecode(offsets,indices)
         return message
+    def messageToNum(self,message:str):
+        # allows for lowercase alphanum, spaced messages.
+        ans = 0
+        for i in range(0,len(message)):
+            c = message[i]
+            ans *= len(self.messageCharSet)
+            ans += self.messageCharSet.index(c)
+        return ans
+    def numToMessage(self,num:int):
+        message = ''
+        l = len(self.messageCharSet)
+        while(num>0):
+            message += self.messageCharSet[num % l]
+            num = math.floor(num/l)
+        message = message[::-1]
+        return message
+    def customEncode(self,message:str)->bytearray:
+        ans = []
+        for i in range(0,len(message)):
+            c = message[i]
+            ans.append(self.messageCharSet.index(c))
+        return bytearray(ans)
+    def customDecode(self,message:bytearray)->str:
+        ans = ''
+        for b in message:
+            ans += self.messageCharSet[b]
+        return ans
+    # def messageToNum2(self,message:str):
+    #     num = 0
+    #     compressedMessage = zlib.compress(self.customEncode(message))
+    #     print(compressedMessage,len(compressedMessage))
+    #     decompressed = zlib.decompress(compressedMessage) 
+    #     print(self.customDecode(decompressed))
+    #     return num
+    # def numToMessage2(self,num:int):
+    #     message = ''
+    #     return message
+def safeAttachExtension(filename:str,ext:str):
+    if(not filename.endswith(ext)):
+        # if(filename.endswith('.doc')):
+        #     filename+='x'
+        # else:
+        filename+=ext
+    return filename
 if __name__ == '__main__':
-    # TODO: consider ?,! delimiters.
-    random.seed(0) # reproducible UUIDs until db is setup.
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--plain',type=str,help='Path to input .docx file.',required=True)
+    parser.add_argument('--output',type=str,help='Path to output .docx file.',required=True)
+    parser.add_argument('--message',type=str,help='Message to encode into input to produce output.')
+    parser.add_argument('--decode',type=bool,help='Use this (--decode True) to decode output document using plain document',default=False)
+    args = parser.parse_args()
     dvg = DocVariationsGenerator()
-    outFname = 'output.docx'
-    doc:Doc = Doc('test.docx')
-    ##Writer: 
-    message = 23
-    ciphertext = dvg.encodeIntoDoc(doc,message,outFname)
-
-    ## Reader:
-    # with open(fname,'r+',encoding='utf-8') as f:
-    #     cipher = f.read()
-    #     message = dvg.decodeFromDoc(doc,cipher)
-    #     print('retrieved message: ',message)
+    outFname:str = args.output
+    doc:Doc = Doc(args.plain)
+    
+    if(args.decode):
+        outputDoc:Doc = Doc(args.output)
+        numMsg = dvg.decodeFromDoc(doc,outputDoc)
+        message = dvg.numToMessage(numMsg)
+        print(message)
+    else:
+        if(args.message is None):
+            print('No message passed for encoding.')
+            parser.print_help()
+            exit()
+        message = dvg.messageToNum(args.message)
+        dvg.encodeIntoDoc(doc,message,outFname)
+        print('Encoded doc saved to: ',outFname)
