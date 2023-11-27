@@ -16,12 +16,22 @@ This section highlights the first few approaches that led up to the final implem
 \subsection{Hash-store Encoding}
 \subsection{Predictable LLM Paraphrasing}
 \section{Review}
-\subsection{Steganography Metrics}
-TODO: from that paper.
+\subsection{Steganography Dimensions}
+As highlighted in
+\href{https://www.researchgate.net/publication/267767675_Syntactic_Bank-based_Linguistic_Steganography_Approach}{this paper},
+steganography techniques can be studied with three dimensions. Below I review the project with each dimension:
+\subsubsection{Payload Capacity}
+It refers to the ratio of hidden information to cover information. The payload capacity is almost as good as methods of [Lexical steganography?], with the recurring example providing
+at most 2 bits per sentence. Additionally, the payload capacity is flexible and can be tuned
+based on the text provided.
+\subsubsection{Robustness}
+It refers to the ability of the system to resist against changes in the cover object. While the method has near zero robustness if the cover object is shared in docx form, there exist ways to circumvent this by converting the document... do there though? check ghostscript de-obscuration.
+\subsubsection{Imperceptibility}
+the potential of the generated stego object to remain indistinguishable from other objects in the same category.
 \subsection{Limitations}
 \subsection{Takeaways}
 \section{References}
 \begin{enumerate}
-\item 
+\item \href{https://www.researchgate.net/publication/267767675_Syntactic_Bank-based_Linguistic_Steganography_Approach}{Linguistic Steganography Researchgate}
 \end{enumerate}
 \end{document}
