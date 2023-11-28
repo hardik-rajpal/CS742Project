@@ -3,35 +3,84 @@
 \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
 \usepackage[a4paper,hmargin=0.8in,bottom=1.3in]{geometry}
 \usepackage{lastpage,enumerate,fancyhdr,mathrsfs,xcolor,graphicx,listings,hyperref,enumitem}
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
+\hbadness 100001
+\newcommand{\mygraphic}[1]{
+\begin{center}
+    \includegraphics[width=\maxwidth{10cm}]{#1}
+\end{center}
+}
 \author{Hardik Rajpal}
 \title{Syntactic Steganography}
 \begin{document}
 \maketitle
 \section{Introduction}
-Steganography refers to the concealment of information within a non-secret message or object. The technique has been applied in images and texts with goals of copyright protection and confidentiality. [Put reference papers here]. This project explores a form text steganography that exploits the syntactic redundancies of the English language. Given a sentence, it can be
-paraphrased to a different sentence, while retaining the (almost entire) meaning. Given a \textbf{plain document}, one can use the above facts to encode a \textbf{message} into it to produce an \textbf{output document}. To extract the message from the output document, the implementation requires the \textbf{plain document}.
+Steganography refers to the concealment of information within a non-secret message or object. The technique has been applied in images with goals of copyright protection and confidentiality (references 6,7). This project explores a form text steganography that exploits the syntactic redundancies of the English language. Given a sentence, it can be
+paraphrased to a different sentence, while retaining the (almost entire) meaning. Given a \textbf{cover text}, one can use the above facts to encode a \textbf{message} into it to produce an \textbf{stego text}. To extract the message from the output document, the implementation requires the \textbf{cover text}.
 \section{Approaches}
-This section highlights the first few approaches that led up to the final implementation.
+This section highlights the first approach, problems and the final approach.
 \subsection{Syntax-Tree Manipulations}
-\subsection{Hash-store Encoding}
+My first approach was to encode bits into sentences based on the structure of their syntax tree. For this, I studied references 1 and 4. The broad ideas were:
+\mygraphic{rsrc/syntaxtree.png}
+\begin{enumerate}
+\item For each sentence in the cover text, extract its syntax tree.
+\item Use a syntax bank to encode message bits into the extracted syntax and obtain new syntax tree.
+\item Generate new sentence from old sentence based on new syntax tree.
+\end{enumerate}
+There were two road-blocks in proceeding with this:
+\begin{enumerate}
+\item Unavailability of a syntax-bank as required by reference 1.
+\item Poor quality outputs from rule-based paraphrasing (employed in generation of a syntax bank).
+\end{enumerate}
 \subsection{Predictable LLM Paraphrasing}
+The broad ideas were:
+\begin{enumerate}
+\item For each sentence in the cover text, procure paraphrased sentences by querying the LLM with temperature set to zero.
+\item As the responses are predictable (with zero temperature), encode the message using the index of the sentence in the list of sentences generated.
+\item Stego text is formed by combining the indexed paraphrases.
+\end{enumerate}
 \section{Review}
 \subsection{Steganography Dimensions}
-As highlighted in
-\href{https://www.researchgate.net/publication/267767675_Syntactic_Bank-based_Linguistic_Steganography_Approach}{this paper},
+As highlighted in Reference 1,
 steganography techniques can be studied with three dimensions. Below I review the project with each dimension:
 \subsubsection{Payload Capacity}
-It refers to the ratio of hidden information to cover information. The payload capacity is almost as good as methods of [Lexical steganography?], with the recurring example providing
-at most 2 bits per sentence. Additionally, the payload capacity is flexible and can be tuned
-based on the text provided.
+It refers to the ratio of hidden information to cover information.
+The payload capacity is much better than that provided lexical steganography, where synonyms are used to encode bits (0.31 bits per sentence on average) with the recurring example providing
+at most 2 bits per sentence for most sentences.
+Additionally, the payload capacity is flexible and can be tuned based on the text provided.
 \subsubsection{Robustness}
-It refers to the ability of the system to resist against changes in the cover object. While the method has near zero robustness if the cover object is shared in docx form, there exist ways to circumvent this by converting the document... do there though? check ghostscript de-obscuration.
+It refers to the ability of the system to resist against changes in the cover object. While the method has near zero robustness if the cover object is shared in docx form, there may exist ways to circumvent this. For example, using a tool like ghostscript to remove fonts from the pdf version (see Reference 2) of the output document (making the text unselectable), assuming there exists a tool to map the nofont version to a font version back. However this has not been explored in the interest of time. Furthermore, HMACs and checksums could be incorporated to protect against substitution of entire sentences in an attempt to modify the message.
 \subsubsection{Imperceptibility}
-the potential of the generated stego object to remain indistinguishable from other objects in the same category.
+It refers to the potential of the generated stego object to remain indistinguishable from other objects in the same category. This is one aspect where the method is much better than the existing methods; the sentences produced are equivalent to what you would find in everyday language and are much more natural than the outputs from methods of rule-based paraphrasing (see references 3 and 4) and possibly lexical synonym-based steganography, where alternating synonyms of a repeated word may potential come across as unnatural.
 \subsection{Limitations}
+\begin{itemize}
+\item The method uses intensive computation power, with at least 12GB of RAM.
+\item The method is rather slow, but the variations once generated can be stored and reused.
+\item The method requires both the sender and receiver to have a copy of the document. This is fine for, detecting document leaks, it might not be a suitable method for securing a communication channel.
+\item Furthermore, the method is not resistant to paraphrasing. However, considering that the document is large, paraphrasing it would require extensive computational power, stands in the way of such an attack.
+\end{itemize}
 \subsection{Takeaways}
+\begin{itemize}
+\item Concept of syntax trees in NLP.
+\item Steganography literature and terms.
+\item Survey of available paraphrasing techniques.
+\item Methods for paraphrase generation.
+\item Using the LLM API provided by \texttt{gpt4all}.
+\item Using the document manipulation API provided  by \texttt{docx} in python.
+\item Next time, just do the labs.
+\end{itemize}
+\subsection{Applications}
+As initially intended, the method may find applications in document leak source detection. When a user requests to view a confidential document x (cover text), we give him access to a modified document x' (stego text) that has his user id (message) (from a database) encoded into it. Thus, unaltered leaks can be traced back to him by decoding the stego text for his user id.
 \section{References}
 \begin{enumerate}
+\item \href{https://www.researchgate.net/publication/229025905_The_Syntax_of_Concealment_Reliable_Methods_for_Plain_Text_Information_Hiding}{Lexical Steganography}
 \item \href{https://www.researchgate.net/publication/267767675_Syntactic_Bank-based_Linguistic_Steganography_Approach}{Linguistic Steganography Researchgate}
+\item \href{https://stackoverflow.com/questions/28797418/replace-all-font-glyphs-in-a-pdf-by-converting-them-to-outline-shapes}{Ghostcript makes text unselectable in pdfs.}
+\item \href{https://www.academia.edu/14415744/Template_Based_Shake_and_Bake_Paraphrasing}{Rule based paraphrasing 1}
+\item \href{https://nlp.fi.muni.cz/raslan/2019/paper15-burgerova.pdf}{Rule based paraphrasing 2 (Czech language)}
+\item \href{https://ph01.tci-thaijo.org/index.php/ecticit/article/view/252500}{Image Steganography for copyright protection}
+\item \href{https://ieeexplore.ieee.org/document/9138073}{Image steganography for confidentiality.}
 \end{enumerate}
 \end{document}
