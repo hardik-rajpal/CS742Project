@@ -105,14 +105,15 @@ def getDataMembers(object):
     members = filter(lambda member:not inspect.ismethod(member[1]),members)
     return list(members)
 class DocVariationsGenerator:
-    def __init__(self):
+    def __init__(self,alpha):
         self.picklepath = 'docvars.pkl'
         self.numphrases = 3
         self.nlp = None
         self.rephraser = None #initialized only if rephrasing function is called
         self.messageCharSet = []
-        for i in range(0,10):
-            self.messageCharSet.append(str(i))
+        if(not alpha):
+            for i in range(0,10):
+                self.messageCharSet.append(str(i))
         for i in range(0,26):
             self.messageCharSet.append(chr(ord('a')+i))
     def extractSentences(self,doc:Doc):
@@ -185,7 +186,6 @@ class DocVariationsGenerator:
         variations = self.generateVariations(sentences,True) # set to true to bypass GPT running locally.
         cleanVariations = self.pruneVariations(variations)
         return cleanVariations,paraSentCount
-    
     def writePDF(self,sentences,name):
         # sents to docx.
         # try applying style.
@@ -222,7 +222,7 @@ class DocVariationsGenerator:
         offsets = self.getOffsets(cleanVariations)
         capacity = offsets[-1] # last offset.
         if(message > capacity):
-            response["error"] = f"Message (${message}) exceeds capacity (${capacity})."
+            response["error"] = f"Message ({message}) exceeds capacity ({capacity})."
             return response
         #message <= capacity
         indices = self.multibaseEncode(offsets,message)
@@ -231,6 +231,8 @@ class DocVariationsGenerator:
             outputSentences.append(sentenceOptions[index])
         outputDoc = Doc(outputFname)
         self.injectSentences(outputDoc,outputSentences,paraSentCount)
+        response["success"] = True
+        return response
     def delimSplit(self,bulktext:str):
         regex = '|'.join('(?<={})'.format(re.escape(delim)) for delim in DELIMS)
         # print(regex)
@@ -308,8 +310,9 @@ if __name__ == '__main__':
     parser.add_argument('--output',type=str,help='Path to output .docx file.',required=True)
     parser.add_argument('--message',type=str,help='Message to encode into input to produce output.')
     parser.add_argument('--decode',type=bool,help='Use this (--decode True) to decode output document using plain document',default=False)
+    parser.add_argument('--alpha',type=bool,help='Use this to encode only alphabetic messages with higher capacity',default=False)
     args = parser.parse_args()
-    dvg = DocVariationsGenerator()
+    dvg = DocVariationsGenerator(args.alpha)
     outFname:str = args.output
     doc:Doc = Doc(args.plain)
     
@@ -324,5 +327,8 @@ if __name__ == '__main__':
             parser.print_help()
             exit()
         message = dvg.messageToNum(args.message)
-        dvg.encodeIntoDoc(doc,message,outFname)
-        print('Encoded doc saved to: ',outFname)
+        response = dvg.encodeIntoDoc(doc,message,outFname)
+        if(response["success"]):
+            print('Encoded doc saved to: ',outFname)
+        else:
+            print(response["error"])
